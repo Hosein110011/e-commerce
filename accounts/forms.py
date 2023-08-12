@@ -37,6 +37,7 @@ class ContactForm(forms.Form):
         return email
     
 
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
@@ -69,5 +70,5 @@ class RegisterForm(forms.Form):
         password2 = self.cleaned_data['password2']
         if password != password2:
             raise forms.ValidationError('Passwords must be matched')
-        raise data        
+        return data        
            
