@@ -22,7 +22,7 @@ class RegisterForm(forms.Form):
         username = self.cleaned_data['username']
         qs = User.objects.filter(username=username)
         if qs.exists():
-            raise forms.ValidationError('This userame is already exists!')
+            raise forms.ValidationError('This username is already exists!')
         return username
     
     def clean_email(self):
