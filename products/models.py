@@ -2,7 +2,7 @@ from django.db import models
 import os
 import random
 from django.db.models import Q
-from .utils import unique_slug_generator, upload_image_path
+from core.utils import unique_slug_generator, upload_image_path
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 

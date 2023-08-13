@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Cart
 from products.models import Product
 from django.contrib import messages
+from order.models import Order
 
 
 def cart_home(request):
@@ -33,8 +34,14 @@ def cart_update(request):
     
 
 
-
-
+def checkout_home(request):
+    cart_obj , cart_created = Cart.objects.new_or_get(request)
+    order_obj = None
+    if cart_created or cart_obj.products.count() == 0:
+        return redirect('carts:cart_home')
+    else:
+        order_obj , new_order_obj = Order.objects.get_or_create(cart=cart_obj)
+    return render(request, 'carts/checkout.html', {'object':order_obj})
 
 
 
