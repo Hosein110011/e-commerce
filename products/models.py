@@ -14,7 +14,13 @@ class ProductQuerySet(models.query.QuerySet):
 
     def featured(self):
         return self.filter(Q(featured=True) & Q(active=True))
-        
+
+    def search(self, query):
+        lookups = (Q(title__icontains=query)|
+                   Q(description__icontains=query)|
+                   Q(price__icontains=query))
+        return self.filter(lookups).distinct()    
+
 
 class ProductManager(models.Manager):
     def get_queryset(self):
@@ -31,6 +37,9 @@ class ProductManager(models.Manager):
         if qs.count()==1:
             return qs.first()
         return None
+    
+    def search(self, query):
+        return self.get_queryset().search(query)
 
 
 class Product(models.Model):
