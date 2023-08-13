@@ -40,7 +40,7 @@ class ProductManager(models.Manager):
         return None
     
     def search(self, query):
-        return self.get_queryset().search(query)
+        return self.get_queryset().active().search(query)
 
 
 class Product(models.Model):
@@ -64,6 +64,9 @@ class Product(models.Model):
     def __unicode__(self):
         return self.title
     
+    @property
+    def name(self):
+        return self.title
 
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):
