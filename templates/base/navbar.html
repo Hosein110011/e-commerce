@@ -1,15 +1,15 @@
-{% url 'home' as home_url %}
-{% url 'contact' as contact_url %}
+{% url 'home:home' as home_url %}
+{% url 'home:contact' as contact_url %}
 {% url 'products:list' as product_list_url %}
-{% url 'login' as login_url %}
-{% url 'logout' as logout_url %}
-{% url 'register' as register_url %}
-{% url 'cart:home' as cart_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
+{% url 'accounts:register' as register_url %}
+{% url 'carts:cart-home' as cart_url %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
    <div class='container'>
   <a class="navbar-brand" href="{{ home_url }}">
-    <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    {% comment %} <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> {% endcomment %}
     {% if brand_name %} {{brand_name }} {% else %}CFE eCommerce {% endif %}
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
